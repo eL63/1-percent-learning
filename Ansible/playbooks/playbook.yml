@@ -1,0 +1,13 @@
+---
+- name: Loading 1 percent learning - challenge
+  hosts: my_system
+  gather_facts: false
+  
+  tasks:
+    - name: Four important learnings to improve in your life
+      ansible.builtin.script: ../library/4learnings.py
+      register: script_out
+
+    - name: Show results from the script
+      ansible.builtin.debug:
+        msg: "{{ script_out.stdout_lines }}"
