@@ -1,6 +1,6 @@
 import customtkinter as ctk
 
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("blue")
 
 app = ctk.CTk()
@@ -23,10 +23,13 @@ def calculate_wealth():
     for month in range(1, total_months + 1):
         total_wealth += monthly_savings
         total_wealth += total_wealth * monthly_interest
+        total_invested = monthly_savings * total_months
+        total_interest = total_wealth - total_invested
 
+        interest_text = f"Earned Interest: {total_interest:,.2f} €".replace(",", "X").replace(".", ",").replace("X", ".")
 
     result_label.configure(
-        text=f"Result: {total_wealth:,.2f} €".replace(",", "X").replace(".", ",").replace("X", "."),
+        text=f"Total net worth: {total_wealth:,.2f} €".replace(",", "X").replace(".", ",").replace("X", ".")+ f"\n{interest_text}",
         text_color="green"
     )
 
